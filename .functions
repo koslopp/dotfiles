@@ -1,0 +1,47 @@
+#!/bin/bash
+# This file is used in both bash and zsh,
+# please make functions places here compatible with both
+
+# Get corresponding windows path
+function wp () {
+    out=$PWD
+    if [ "$(echo $PWD | cut -c1-5 )" = "/hizz" ]; then
+        out="//samba$(echo $out | cut -c6-)"
+    else
+        out='//samba'$out
+    fi
+    printf '%s\n' ${out//\//\\}
+}
+
+# Append directories to PATH if they exist, will substitute relative paths
+function path_append () {
+    p=$1
+    # Substitute relative paths
+    [[ "$1" != /* ]] && p=`pwd`/$p
+
+    if [ -d "$p" ]; then
+        # Add it if it does not already exist
+        [[ ":$PATH:" != *":$p:"* ]] && PATH="${PATH:+"$PATH:"}$p"
+        return 0
+    fi
+
+    echo "Path is not a directory, or does not exist"
+    return 1
+}
+
+
+# Prepend directories to PATH if they exist, will substitute relative paths
+function path_prepend () {
+    p=$1
+    # Substitute relative paths
+    [[ "$1" != /* ]] && p=`pwd`/$p
+
+    if [ -d "$p" ]; then
+        # Add it if it does not already exist
+        [[ ":$PATH:" != *":$p:"* ]] && PATH="$p${PATH:+":$PATH"}"
+        return 0
+    fi
+
+    echo "Path is not a directory, or does not exist"
+    return 1
+}

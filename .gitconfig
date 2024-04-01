@@ -1,0 +1,56 @@
+[user]
+	name = Daniel Koslopp
+	email = daniel.koslopp@nordicsemi.no
+[core]
+	editor = nano
+	excludesfile = ~/.gitignore_global
+[push]
+	default = simple
+[tag]
+	sort = v:refname
+[diff]
+	# tool = vimdiff
+[difftool]
+	# prompt = false
+[pull]
+	rebase = true
+[alias]
+	#############
+	s = status -s
+	sb = status -s -b
+	st = status
+	#############
+	l = log --stat --graph
+	lal = log --graph --branches --remotes --tags --decorate --pretty=format:"%C(auto)%h%d%x09%an%x09%ad%x09%s"
+	la = log --graph --branches --remotes --tags --decorate --oneline
+	ll = log --graph --decorate --pretty=format:"%C(auto)%h%d%x09%an%x09%ad%x09%s"
+	ls = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short --max-count=20
+	#############
+	ci = commit
+	cia = commit -a
+	d = diff .
+	f = fetch --all
+	ps = push
+  pl = pull
+	r = remote -v
+	#############
+	b =   branch -vv
+	ba =  branch -vv -a
+	bd =  branch -vv -d
+	bdd = branch -vv -D
+	br =  branch -vv -r
+	bc = rev-parse --abbrev-ref HEAD
+	bu = !git rev-parse --abbrev-ref --symbolic-full-name "@{u}"
+	#############
+	co = checkout
+	com = checkout master
+	#############
+	sa = stash -u --all
+	#############
+	behind = !git rev-list --left-only --count $(git bu)...HEAD
+	ahead = !git rev-list --right-only --count $(git bu)...HEAD
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

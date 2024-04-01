@@ -1,0 +1,13 @@
+# Compiled source #
+###################
+*.exe
+*.o
+*.so
+
+# Logs #
+######################
+*.log
+
+# Editor files #
+################
+.vscode

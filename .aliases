@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Black, White and Beautiful Colors
+alias ls='ls -A --color=auto'
+alias grep='grep --color=auto'
+alias jobs='jobs -l'
+# alias ggrep='find -L . -name .git -prune -o -type f -print | xargs grep -HIn --color=auto'
+
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias -- -="cd -"
+
+# Path
+alias rp="realpath"
+
+# Grid Server
+alias qs='qsub -cwd -V -j y -b y -M "${USER}@nordicsemi.no" -m e -o \$JOB_ID.log $*'
+alias qr='qrsh -cwd -V -now no -pty yes $*'
+
+# finger no longer exists on RHEL8, use pinky instead (is also present on CentOS 7)
+alias finger='pinky -l'

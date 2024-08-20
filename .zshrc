@@ -77,8 +77,8 @@ plugins=(
     fzf
     zsh-autosuggestions
 )
-export EDITOR=nano
-export GIT_EDITOR=nano
+export EDITOR=code
+export GIT_EDITOR=code
 
 source $ZSH/oh-my-zsh.sh
 
